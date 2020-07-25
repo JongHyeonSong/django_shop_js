@@ -12,7 +12,7 @@ class Customer(models.Model):
     
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
     
@@ -73,7 +73,7 @@ class OrderItem(models.Model):
         return total
     
 
-class Shipping(models.Model):
+class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.SET_NULL)
     order = models.ForeignKey(Order, blank=True, null=True, on_delete=models.SET_NULL)
 
