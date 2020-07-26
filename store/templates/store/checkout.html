@@ -149,6 +149,11 @@
         .then((data)=> {
             console.log("Sucess", data);
             alert('Transcation completed');
+
+            cart = {}
+            document.cookie ='cart='+JSON.stringify(cart)+";domain=;path=/"
+            console.log(document.cookie)
+
             window.location.href = "{% url 'store' %}";
         })
     }

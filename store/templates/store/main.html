@@ -31,7 +31,33 @@
             return cookieValue;
         }
         const csrftoken = getToken('csrftoken');
-    </script>
+
+        //쿠키
+        function getCookie(name){
+          //쿠키파싱
+          var cookieArr = document.cookie.split(";");
+
+          for(var i=0; i<cookieArr.length; i++){
+            var cookiePair = cookieArr[i].split("=");
+            //공백제거 후 name변수랑비교
+            if(name == cookiePair[0].trim()){
+              return decodeURIComponent(cookiePair[1]);
+            }
+          }
+          return null;
+        }
+
+        var cart = JSON.parse(getCookie('cart'))
+        if(cart==undefined){
+          cart = {}
+          console.log('Cart was created')
+          document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+          console.log(document.cookie)
+        }
+
+        console.log('Cart@@@:', cart)
+
+</script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
